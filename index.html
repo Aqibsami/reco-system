@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECO – Recycle Economy System</title>
+    <style>
+        /* CSS Variables for easy theme management */
+        :root {
+            --primary-green: #2e7d32;
+            --accent-green: #43a047;
+            --dark-text: #333;
+            --light-gray: #f4f4f4;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Global & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+            overflow: hidden;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-green);
+            margin-bottom: 3rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Header & Navigation */
+        .main-header {
+            background: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+        
+        /* Hero Section ("Our Idea") */
+        #idea {
+            text-align: center;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            background: var(--light-gray);
+        }
+
+        #idea .tagline {
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        #idea h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        #idea p {
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-green);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        /* How It Works Section */
+        #how-it-works {
+            background-color: var(--white);
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 2rem;
+            width: 350px;
+            max-width: 100%;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+        }
+
+        .step-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            background: var(--accent-green);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+        
+        .step-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+        }
+        
+        .step-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 0;
+        }
+
+
+        /* Impact Section */
+        #impact {
+            background: var(--light-gray);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .impact-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-green);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .impact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+        }
+
+        /* Roadmap Section */
+        .roadmap-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 2rem;
+        }
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 5%;
+            width: 90%;
+            height: 4px;
+            background: #ddd;
+            z-index: 1;
+        }
+        .phase {
+            width: 23%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .phase::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 4px solid var(--accent-green);
+            transition: background-color 0.3s ease;
+        }
+        .phase:hover::before {
+            background-color: var(--accent-green);
+        }
+        .phase h3 {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: var(--primary-green);
+        }
+        .phase p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            background: var(--primary-green);
+            color: var(--white);
+        }
+        
+        #contact h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        #contact p {
+            font-size: 1.4rem;
+            margin-top: 1rem;
+        }
+
+        #contact a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-text);
+            color: var(--light-gray);
+            text-align: center;
+            padding: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .impact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h2 { font-size: 1.8rem; margin-bottom: 2rem; }
+            section { padding: 3rem 0; }
+
+            .main-header .container {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+            }
+
+            #idea h1 {
+                font-size: 2.5rem;
+            }
+
+            .step-card {
+                width: 100%;
+            }
+
+            .roadmap-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            .roadmap-container::before { display: none; }
+            .phase { width: 100%; }
+            .phase::before { display: none; }
+            .phase h3 { margin-top: 0; }
+        }
+        
+        @media (max-width: 500px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">RECO</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#idea">Our Idea</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#impact">Impact</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="idea">
+            <div class="container">
+                <p class="tagline">Turning Waste into Value</p>
+                <h1>Recycle Economy System</h1>
+                <p>
+                    RECO is a revolutionary platform that transforms everyday waste into a valuable digital asset. We are building a complete circular economy that benefits communities, industries, and the planet.
+                </p>
+                <a href="#how-it-works" class="cta-button">See How It Works</a>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <div class="container">
+                <h2>The RECO Circular Economy</h2>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Waste Collection</h3>
+                        <p>Local authorities and partners collect and oversee segregated waste, forming the foundation of the system.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Recycling & Minting</h3>
+                        <p>Recyclers process the waste and earn digital RECO Points (RP) for every kilogram recycled through our 'GreenMint' module.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Industry Compliance</h3>
+                        <p>Manufacturers purchase RECO Points to offset their waste footprint, fulfilling their environmental responsibility via our 'PolluterPay' module.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Transaction & Revenue</h3>
+                        <p>All transactions occur on our transparent 'EcoLedger' platform, where recyclers sell points to manufacturers.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">5</div>
+                        <h3>Community Incentives</h3>
+                        <p>Households and individuals earn rewards for segregating waste through our 'RewardFlow' program, closing the loop.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="impact">
+            <div class="container">
+                <h2>Our Core Benefits</h2>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <h3>Cleaner Environment</h3>
+                        <p>Dramatically reduce landfill waste and pollution by incentivizing recycling at a grassroots level.</p>
+                    </div>
+                    <div class="impact-card">
+                        <h3>Job Creation</h3>
+                        <p>Our system creates new opportunities in waste collection, sorting, and processing logistics.</p>
+                    </div>
+                    <div class="impact-card">
+                        <h3>Community Rewards</h3>
+                        <p>Users can earn valuable rewards, strengthening household and local business economies.</p>
+                    </div>
+                    <div class="impact-card">
+                        <h3>Industry Accountability</h3>
+                        <p>We provide transparent data that helps hold industries accountable for their production waste.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="roadmap">
+            <div class="container">
+                <h2>Our Roadmap</h2>
+                <div class="roadmap-container">
+                    <div class="phase">
+                        <h3>Phase 1: Pilot City</h3>
+                        <p>Launch and refine the complete RECO system within a single city to prove the model.</p>
+                    </div>
+                    <div class="phase">
+                        <h3>Phase 2: Regional Hubs</h3>
+                        <p>Expand to multiple cities and establish regional hubs for waste processing and management.</p>
+                    </div>
+                    <div class="phase">
+                        <h3>Phase 3: National Exchange</h3>
+                        <p>Develop a nationwide marketplace for RECO points, integrating with major industries.</p>
+                    </div>
+                    <div class="phase">
+                        <h3>Phase 4: International</h3>
+                        <p>Scale the RECO model globally, adapting it to different economies and waste streams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>Ready to be part of the change? We'd love to hear from you.</p>
+                <p>Email: <a href="mailto:aqibsami04@gmail.com">aqibsami04@gmail.com</a></p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2025 RECO – Recycle Economy System |</p>
+    </footer>
+
+</body>
+</html>
